@@ -4,7 +4,7 @@ import Combine
 class PreOnboardingViewModel: ObservableObject {
     // MARK: - Published Properties
     @Published var preOnboardingTitle = "Help us learn more about your tastes"
-    @Published var preOnboardingDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    @Published var preOnboardingDescription = "Tell us what you like so we can craft brews just for you. The more we know, the better your coffee experience."
     
     // MARK: - Callbacks
     var navigateToOnboarding: (() -> Void)?
