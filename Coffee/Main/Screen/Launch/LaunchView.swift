@@ -2,7 +2,7 @@ import SwiftUI
 
 // MARK: - Views
 struct LaunchView: View {
-    @State private var isRotating = false
+    @State private var rotation = 0.0
     var namespace: Namespace.ID
     
     var body: some View {
@@ -11,7 +11,7 @@ struct LaunchView: View {
                 Image("handle")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .rotationEffect(Angle(degrees: isRotating ? 390 : 0))
+                    .rotationEffect(.degrees(rotation))
                 
                 Image("coffee")
                     .resizable()
@@ -37,8 +37,8 @@ struct LaunchView: View {
                 .ignoresSafeArea()
         )
         .onAppear {
-            withAnimation(.linear(duration: 4)) {
-                isRotating = true
+            withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
+                rotation = 360
             }
         }
     }
