@@ -3,7 +3,7 @@ import FirebaseAuth
 
 // MARK: - Navigation
 enum Screen {
-    case launch
+//    case launch
     case welcome
     case auth
     case preOnboarding
@@ -13,11 +13,11 @@ enum Screen {
 }
 
 final class MainCoordinator: ObservableObject {
-    @Published var currentScreen: Screen = .launch
+    @Published var currentScreen: Screen = .auth
     @Published var isUserAuthenticated: Bool = false
 
     init() {
-        currentScreen = .launch
+        currentScreen = .auth
         checkUserAuthState()
         setupAuthStateListener()
     }
@@ -55,13 +55,13 @@ final class MainCoordinator: ObservableObject {
     }
     
     func handleLaunchCompletion() {
-        if currentScreen == .launch {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+//        if currentScreen == .launch {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
                 withAnimation(.bouncy(duration: 0.3, extraBounce: 0.3)) {
                     self.navigate(to: self.isUserAuthenticated ? .preOnboarding : .welcome)
                 }
             }
-        }
+//        }
     }
 }
 
@@ -74,12 +74,12 @@ struct CoordinatorView: View {
         NavigationStack {
             Group {
                 switch coordinator.currentScreen {
-                case .launch:
-                    LaunchView(namespace: animation)
-                        .onAppear {
-                            coordinator.handleLaunchCompletion()
-                        }
-                        .environmentObject(coordinator)
+//                case .launch:
+//                    LaunchView(namespace: animation)
+//                        .onAppear {
+//                            coordinator.handleLaunchCompletion()
+//                        }
+//                        .environmentObject(coordinator)
                 case .welcome:
                     WelcomeView(namespace: animation)
                         .environmentObject(coordinator)
@@ -102,6 +102,9 @@ struct CoordinatorView: View {
             }
             .frame(maxWidth: .infinity)
             .background(backgroundView)
+            .onAppear {
+                coordinator.handleLaunchCompletion()
+            }
         }
         .environmentObject(coordinator)
     }

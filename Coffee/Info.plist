@@ -9,6 +9,11 @@
 		<string>Rubik-Regular.ttf</string>
 		<string>Rubik-Black.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+		<string>fetch</string>
+	</array>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>
